@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Job</title>
+    <link rel="stylesheet" href="css/apply.css">
+    <style>
+        /* Additional CSS styles specific to this page if needed */
+    </style>
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var toggleButton = document.getElementById("toggleBtn");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.textContent = "Hide";
+            } else {
+                passwordField.type = "password";
+                toggleButton.textContent = "Show";
+            }
+        }
+
+        document.getElementById('jobApplicationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const experience = parseInt(document.getElementById('experience').value.trim(), 10);
+    const qualification = document.getElementById('qualification').value;
+    
+    // Validation logic
+    if (experience < 2 || qualification !== 'bachelor' && qualification !== 'master' && qualification !== 'phd') {
+        alert('Sorry, you do not meet our job requirements.');
+    } else {
+        alert('Congratulations! Your application has been submitted.');
+        // Here you can submit the form data to a backend or perform further actions
+        // For simplicity, we'll just reset the form
+        document.getElementById('jobApplicationForm').reset();
+    }
+});
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Job Application Form</h1>
+        
+        <form id="jobApplicationForm" action="submit_application.php" method="POST" enctype="multipart/form-data">
+            
+            <fieldset>
+                <legend>Personal Information</legend>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Resume/CV Upload</legend>
+                <label for="resume">Upload your Resume/CV:</label>
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Job-specific Questions</legend>
+                <label for="experience">Years of Experience:</label>
+                <input type="number" id="experience" name="experience" min="0" required>
+                
+                <label for="skills">Skills (comma-separated):</label>
+                <input type="text" id="skills" name="skills" required>
+                
+                <label for="education">Desired Position:</label>
+                <select id="education" name="education" required>
+                    <option value="bachelors">Bachelor's Degree</option>
+                    <option value="masters">Master's Degree</option>
+                    <option value="phd">Ph.D. or higher</option>
+                </select>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Password</legend>
+                <div class="password-input">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="button" id="toggleBtn" onclick="togglePassword()">Show</button>
+                </div>
+            </fieldset>
+        
+            <button id="submitBtn" type="button">Submit Application</button>
+        </form>
+    </div>
+</body>
+</html>

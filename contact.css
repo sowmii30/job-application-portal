@@ -1,0 +1,29 @@
+.contact-section {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.contact-details {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.contact-details p {
+    margin-bottom: 10px;
+}
+
+/* Example styles for header and footer, adjust as per your design */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
